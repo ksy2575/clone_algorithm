@@ -1,3 +1,54 @@
+# 21.03.05 테스트 합격
+# 프로그래머스 3단계 테스트 -> 그래프
+from collections import deque
+def bfs(computers, i, n, cnt):
+  dq = deque([i])
+
+  while dq:
+    curr = dq.popleft()
+    for j in range(n):
+      if curr == j:
+        continue
+      if computers[curr][j] == 1:
+        dq.append(j)
+        computers[curr][j] = cnt
+        computers[j][curr] = cnt
+  return computers, cnt
+def solution(n, computers):
+  cnt = 0
+  for i in range(n):
+    zerocnt = 0
+    for j in range(n):
+      if computers[i][j] == 0:
+        zerocnt += 1
+      if i!=j and computers[i][j] == 1:
+        computers, cnt = bfs(computers, i, n, cnt-1)
+    else:
+      if zerocnt == n-1:
+        cnt -= 1
+  return -cnt
+# print(solution(3, [[1, 1, 0], [1, 1, 0], [0, 0, 1]]))
+# print(solution(3, [[1, 1, 0], [1, 1, 1], [0, 1, 1]]))
+
+
+# 프로그래머스 3단계 테스트 -> 길찾기
+def solution(m, n, puddles):
+  l1 = [[0 for j in range(m+1)] for i in range(n+1)]
+  l1[1][1] = 1
+  print(l1)
+  for i in range(1, n+1):
+    for j in range(1, m+1):
+      if (i, j) == (1, 1):
+        continue
+      if [j, i] in puddles:
+        continue
+      l1[i][j] = (l1[i-1][j] + l1[i][j-1])%1000000007
+  return l1[-1][-1]
+# solution(4, 3, [[2, 2]])
+
+
+########################################################
+# 21.03.03 테스트 불합격
 # 프로그래머스 3단계 테스트 -> dp 동적계획법
 def do(l1):
     memo = [0]*len(l1)
