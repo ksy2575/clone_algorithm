@@ -25,10 +25,24 @@ def findshape(board, i, j):
     print('num:', num)
     print(block)
     print(black)
-    four = [[(0, 0), (2, 3)], [(0, 0), (3, 2)], [(0, -2), (-3, 0)], [(0, -3), (-2, 0)]]
-    for k in range(len(four))
-        for ii in block:
-            print(ii, block[ii])
+    four = [[(0, 0), (2, 3)], [(0, 0), (3, 2)], [(0, -1), (3, 1)], [(0, -2), (2, 1)]]
+    for curr in four:
+        cnt = 0
+        iStart, jStart = i + curr[0][0], j + curr[0][1]
+        iEnd, jEnd = i + curr[1][0], j + curr[1][1]
+        for ii in range(iStart, iEnd):
+            for jj in range(jStart, jEnd):
+                if ii >= len(board) or jj >= len(board[0]) or jj < 0:
+                    continue
+                if board[ii][jj] == num:
+                    cnt += 1
+                if board[ii][jj] not in (num, -1):
+                    continue
+                print("ii", "jj")
+                print(ii, jj)
+                # 이 부분 추가
+    for ii in block:
+        print(ii, block[ii])
 
 
 def solution(board):
