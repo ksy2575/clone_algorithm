@@ -1,3 +1,4 @@
+# class
 class Person:
     def greeting(self):
         print('hello')
@@ -6,6 +7,7 @@ class Person:
 sooyong = Person()
 sooyong.greeting()
 
+# class - 메서드
 def greeting():
     print('outside')
 class Person:
