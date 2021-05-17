@@ -52,3 +52,4 @@ class Person:
 sooyong = Person(10000)
 sooyong.usewallet(3000)
 sooyong.usewallet(8000)
+# 비공개 메서드도 생성 가능 -> def __(메서드명):
