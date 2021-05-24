@@ -8,9 +8,13 @@ class Student(Person):
     def study(self):
         print("studying")
 
-sooyong = Student()
-sooyong.greeting()
-sooyong.study()
-
-# 상속 관계 확인하기
-print(issubclass(Student, Person))
+# sooyong = Student()
+# sooyong.greeting()
+# sooyong.study()
+#
+# # 상속 관계 확인하기
+# print(issubclass(Student, Person))
+dic = {}
+dic['sooyong'] = Person()
+dic['sangho'] = Person()
+dic['sooyong'].greeting()
