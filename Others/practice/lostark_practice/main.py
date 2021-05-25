@@ -9,21 +9,22 @@ SLEEP_COUNT = 25
 
 class Product:
     def __init__(self, name):
-        print(__name__, name)
+        print('Instance', name, 'created')
         self.name = name
         self.curr_price = 0
         self.latest_price = 0
+        self.bundle = 0
 
-    def set_price(self, curr_price, latest_price):
-        print("set_price", __name__)
+    def set_price(self, curr_price, latest_price, bundle):
+        print("Set price of", self.name)
         self.curr_price = curr_price
         self.latest_price = latest_price
+        self.bundle = bundle
 
 
 class ProductConstructor:
     product_dict = defaultdict(Product)
     Recipe_dict = defaultdict(list)
-
 
     def __init__(self, directory):
         self.file_reader = open(directory, 'r')
@@ -32,7 +33,7 @@ class ProductConstructor:
     def read_line(self):
         csv_reader = csv.reader(self.file_reader)
         for line in csv_reader:
-            print(line)
+            # print(line)
             self.create_product_dict(line)
         self.file_reader.close()
 
@@ -87,7 +88,9 @@ class Crawler:
             # print(curr)
             self.item_name_textfield.send_keys(curr)
             self.searchBtn.click()
-
+            curr_price = -1
+            latest_price = -1
+            bundle = 1
             for i in range(SLEEP_COUNT):
                 try:
                     self.table = self.browser.find_element_by_xpath(
@@ -103,19 +106,18 @@ class Crawler:
                             latest_price = value.find_elements_by_tag_name("td")[1]
                             cost = value.find_elements_by_tag_name("td")[3]
                             bundle = self.export_bundle(body.text)
-                            curr_price = int(cost.text) / bundle
-                            latest_price = float(latest_price.text) / bundle
-                            print(curr_price, latest_price)
+                            curr_price = int(cost.text) # / bundle
+                            latest_price = float(latest_price.text) # / bundle
+                            print('curr_price', curr_price, 'latest_price', latest_price)
                     break
                 except:
-                    print(i)
+                    print(i, 'SLEEP_TIME')
                     time.sleep(SLEEP_TIME)
             else:
                 print("테이블 정보 불러오기 시간 초과")
                 quit()
 
-            print(curr, product_dict[curr].name, product_dict[curr].curr_price)
-            product_dict[curr].set_price(curr_price, latest_price)
+            product_dict[curr].set_price(curr_price, latest_price, bundle)
 
             self.item_name_deleteBtn.click()
 
