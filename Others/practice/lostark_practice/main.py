@@ -8,6 +8,8 @@ SLEEP_TIME = 0.2
 SLEEP_COUNT = 25
 
 class Product:
+    name = ''
+    curr_price = 0
     def __init__(self, name):
         print('Instance', name, 'created')
         self.name = name
@@ -20,6 +22,9 @@ class Product:
         self.curr_price = curr_price
         self.latest_price = latest_price
         self.bundle = bundle
+
+    def ret_price(self):
+        return self.curr_price
 
 
 class ProductConstructor:
@@ -102,6 +107,9 @@ class Crawler:
                         body = value.find_elements_by_tag_name("td")[0]
 
                         if body.text.split('\n')[0] == curr:
+                            if body.text.split('\n')[0] == '죽음의 습격 각인서' and index != 3:
+                                print(index)
+                                continue
                             print(curr)
                             latest_price = value.find_elements_by_tag_name("td")[1]
                             cost = value.find_elements_by_tag_name("td")[3]
@@ -109,6 +117,8 @@ class Crawler:
                             curr_price = int(cost.text) # / bundle
                             latest_price = float(latest_price.text) # / bundle
                             print('curr_price', curr_price, 'latest_price', latest_price)
+
+                            break
                     break
                 except:
                     print(i, 'SLEEP_TIME')
@@ -146,8 +156,12 @@ class Crawler:
                 print('Chrome driver has not KILLED.')
 
 
-
-constructor = ProductConstructor('./practice.csv')
-crawler = Crawler()
-crawler.product_construct(constructor.product_dict)
+def main():
+    constructor = ProductConstructor('./practice.csv')
+    crawler = Crawler()
+    crawler.product_construct(constructor.product_dict)
+    print(constructor.product_dict)
+    print(constructor.product_dict['죽음의 습격 각인서'].ret_price())
+    return constructor.product_dict['죽음의 습격 각인서'].ret_price()
+main()
 # print(constructor.product_dict)
