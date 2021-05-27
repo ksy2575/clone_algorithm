@@ -10,6 +10,12 @@ SLEEP_COUNT = 25
 class Product:
     name = ''
     curr_price = 0
+    def __new__(cls, *args, **kwargs):
+        if not hasattr(cls, "_instance"):
+            print('__new__called')
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
     def __init__(self, name):
         print('Instance', name, 'created')
         self.name = name
@@ -96,6 +102,7 @@ class Crawler:
             curr_price = -1
             latest_price = -1
             bundle = 1
+            time.sleep(1)
             for i in range(SLEEP_COUNT):
                 try:
                     self.table = self.browser.find_element_by_xpath(
@@ -114,8 +121,8 @@ class Crawler:
                             latest_price = value.find_elements_by_tag_name("td")[1]
                             cost = value.find_elements_by_tag_name("td")[3]
                             bundle = self.export_bundle(body.text)
-                            curr_price = int(cost.text) # / bundle
-                            latest_price = float(latest_price.text) # / bundle
+                            curr_price = int(''.join(cost.text.split(','))) # / bundle
+                            latest_price = float(''.join(latest_price.text.split(','))) # / bundle
                             print('curr_price', curr_price, 'latest_price', latest_price)
 
                             break
@@ -163,5 +170,7 @@ def main():
     print(constructor.product_dict)
     print(constructor.product_dict['죽음의 습격 각인서'].ret_price())
     return constructor.product_dict['죽음의 습격 각인서'].ret_price()
+def __del__():
+    print('asdf')
 main()
 # print(constructor.product_dict)
