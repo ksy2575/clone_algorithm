@@ -8,6 +8,7 @@ SLEEP_TIME = 0.2
 SLEEP_COUNT = 25
 
 class Product:
+    # 클래스 속성
     name = ''
     curr_price = 0
     def __new__(cls, *args, **kwargs):
@@ -23,8 +24,8 @@ class Product:
         self.latest_price = 0
         self.bundle = 0
 
-    def set_price(self, curr_price, latest_price, bundle):
-        print("Set price of", self.name)
+    def set_price(self, curr_price, latest_price, bundle, name):
+        print("Set price of", name)
         self.curr_price = curr_price
         self.latest_price = latest_price
         self.bundle = bundle
@@ -134,7 +135,7 @@ class Crawler:
                 print("테이블 정보 불러오기 시간 초과")
                 quit()
 
-            product_dict[curr].set_price(curr_price, latest_price, bundle)
+            product_dict[curr].set_price(curr_price, latest_price, bundle, curr)
 
             self.item_name_deleteBtn.click()
 
@@ -173,4 +174,3 @@ def main():
 def __del__():
     print('asdf')
 main()
-# print(constructor.product_dict)
