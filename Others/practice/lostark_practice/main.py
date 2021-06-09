@@ -8,14 +8,16 @@ SLEEP_TIME = 0.2
 SLEEP_COUNT = 25
 
 class Product:
-    # 클래스 속성
-    name = ''
-    curr_price = 0
-    def __new__(cls, *args, **kwargs):
-        if not hasattr(cls, "_instance"):
-            print('__new__called')
-            cls._instance = super().__new__(cls)
-        return cls._instance
+    # 클래스 속성 <- Product 클래스 공통의
+    # name = ''
+    # curr_price = 0
+
+    # Product 클래스는 여러 개 생성되어야 하기 때문에 싱글턴 패턴을 적용하기엔 무리가 있다.
+    # def __new__(cls, *args, **kwargs):
+    #     if not hasattr(cls, "_instance"):
+    #         print('__new__called')
+    #         cls._instance = super().__new__(cls)
+    #     return cls._instance
 
     def __init__(self, name):
         print('Instance', name, 'created')
@@ -25,7 +27,7 @@ class Product:
         self.bundle = 0
 
     def set_price(self, curr_price, latest_price, bundle, name):
-        print("Set price of", name)
+        print("Set price of", name, ':', curr_price)
         self.curr_price = curr_price
         self.latest_price = latest_price
         self.bundle = bundle
@@ -169,8 +171,9 @@ def main():
     crawler = Crawler()
     crawler.product_construct(constructor.product_dict)
     print(constructor.product_dict)
-    print(constructor.product_dict['죽음의 습격 각인서'].ret_price())
-    return constructor.product_dict['죽음의 습격 각인서'].ret_price()
+    print(constructor.Recipe_dict)
+    print(constructor.product_dict['고급 회복약'].ret_price())
+    # return constructor.product_dict['죽음의 습격 각인서'].ret_price()
 def __del__():
     print('asdf')
 main()
