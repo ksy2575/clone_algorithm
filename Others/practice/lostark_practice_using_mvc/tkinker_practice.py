@@ -9,9 +9,10 @@ window.geometry("640x400+100+100")
 window.resizable(False, False)
 
 
-# img = Image.open('.\source\lostark-logo.png')
-# resized_img = img.resize((240, 66))
-# resized_img.save('.\source\lostark_logo_240x66.png')
+# img = Image.open(r'.\source\done.png')
+# resized_img = img.resize((16, 16))
+# resized_img.save(r'.\source\button_done_16x16.png')
+
 
 ################################
 #       윗부분 프레임            #
@@ -26,14 +27,23 @@ logo = Canvas(upperFrame, width=240, height=66)
 
 logoImage = PhotoImage(file='.\source\lostark_logo_240x66.png')
 logo.create_image(5, 5, anchor=NW, image=logoImage)
+logo.grid(row=0, column=0)
 
-title = Label(upperFrame, text='제작 효율 계산기', height=3, font=font.Font(size=12))
+titleFrame = Frame(upperFrame, bd=1)
+titleFrame.grid(row=0, column=1, padx=3)
+
+title0 = Label(titleFrame)
+title0.grid(row=0, column=0, padx=3)
+title = Label(titleFrame, text='제작 효율 계산기', font=font.Font(size=12))
+title.grid(row=1, column=0, padx=3, sticky="s")
+title2 = Label(titleFrame, text='0.1ver', font=font.Font(size=7))
+title2.grid(row=2, column=0, pady=3)
+
+
 buttonCurrPrice = Button(upperFrame, text='현재가 확인', fg='black', bg='lightgray', width=15, height=3)
 buttonLatestPrice = Button(upperFrame, text='시세 그래프', fg='black', bg='lightgray', width=15, height=3)
 
 
-logo.grid(row=0, column=0)
-title.grid(row=0, column=1, padx=3)
 buttonCurrPrice.grid(row=0, column=2, padx=10)
 buttonLatestPrice.grid(row=0, column=3, sticky="e")
 
@@ -61,16 +71,24 @@ resultFrame.grid(row=0, column=1, padx=3, pady=19, sticky="ewsn")
 # graphCanvas.grid(row=0, column=0, sticky="n")
 # lowerFrame.grid_rowconfigure(0, weight=1)
 # lowerFrame.grid_rowconfigure(1, weight=100)
-messageFrame = Frame(resultFrame, relief="solid", bd=1, bg='yellow', width=480)
-messageFrame.place(x=480, y=290, width=100, height=30, anchor="se")
+
+
+
+################################
+#       메시지 프레임            #
+################################
+messageFrame = Frame(resultFrame, relief="solid")
+messageFrame.place(x=480, y=290, height=20, anchor="se")
 # messageLable = Label(resultFrame, text='제작 효율 계산기', height=3, font=font.Font(size=12))
 # buttonRefresh = Button(resultFrame, text='현재가 확인', fg='black', bg='lightgray', width=15, height=3)
-buttonRefresh = Button(messageFrame, fg='black', bg='white')
-messageLable = Label(messageFrame, text='제작 효율 계산기', height=3, font=font.Font(size=12))
+buttonImage = PhotoImage(file=r'.\source\button_refresh_16x16.png')
+buttonRefresh = Button(messageFrame, fg='black', bg='white', image=buttonImage)
+messageLable = Label(messageFrame, text='제작 효율 계산기ver0.1', font=font.Font(size=8))
 
 # messageLable.place(x=5, y=5, width=50, height=50)
 # buttonRefresh.place(x=5, y=5, width=50, height=50)
-buttonRefresh.pack(side='right')
+buttonRefresh.pack(side='right', anchor="s")
+messageLable.pack(side='right', anchor="s")
 
 
 window.mainloop()
