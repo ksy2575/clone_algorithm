@@ -9,9 +9,9 @@ window.geometry("640x400+100+100")
 window.resizable(False, False)
 
 
-# img = Image.open(r'.\source\done.png')
+# img = Image.open(r'.\0_source\done.png')
 # resized_img = img.resize((16, 16))
-# resized_img.save(r'.\source\button_done_16x16.png')
+# resized_img.save(r'.\0_source\button_done_16x16.png')
 
 
 ################################
@@ -25,7 +25,7 @@ logo = Canvas(upperFrame, width=240, height=66)
 # logo.pack(side="top", anchor="w")
 # title = Label(window, text='제작 효율 계산기', height=3, font=font.Font(family="Lucida Grande", size=20))
 
-logoImage = PhotoImage(file='.\source\lostark_logo_240x66.png')
+logoImage = PhotoImage(file='0_source\lostark_logo_240x66.png')
 logo.create_image(5, 5, anchor=NW, image=logoImage)
 logo.grid(row=0, column=0)
 
@@ -36,7 +36,7 @@ title0 = Label(titleFrame)
 title0.grid(row=0, column=0, padx=3)
 title = Label(titleFrame, text='제작 효율 계산기', font=font.Font(size=12))
 title.grid(row=1, column=0, padx=3, sticky="s")
-title2 = Label(titleFrame, text='0.1ver', font=font.Font(size=7))
+title2 = Label(titleFrame, text='ver0.1', font=font.Font(size=8))
 title2.grid(row=2, column=0, pady=3)
 
 
@@ -66,7 +66,7 @@ resultFrame = Frame(lowerFrame, relief="solid", bd=1, bg='pink', width=480)
 resultFrame.grid(row=0, column=1, padx=3, pady=19, sticky="ewsn")
 
 # graphCanvas = Canvas(resultFrame, width=240, height=66)
-# logoImage = PhotoImage(file='.\source\lostark_logo_240x66.png')
+# logoImage = PhotoImage(file='.\0_source\lostark_logo_240x66.png')
 # logo.create_image(5, 5, anchor=NW, image=logoImage)
 # graphCanvas.grid(row=0, column=0, sticky="n")
 # lowerFrame.grid_rowconfigure(0, weight=1)
@@ -81,7 +81,7 @@ messageFrame = Frame(resultFrame, relief="solid")
 messageFrame.place(x=480, y=290, height=20, anchor="se")
 # messageLable = Label(resultFrame, text='제작 효율 계산기', height=3, font=font.Font(size=12))
 # buttonRefresh = Button(resultFrame, text='현재가 확인', fg='black', bg='lightgray', width=15, height=3)
-buttonImage = PhotoImage(file=r'.\source\button_refresh_16x16.png')
+buttonImage = PhotoImage(file=r'0_source\button_refresh_16x16.png')
 buttonRefresh = Button(messageFrame, fg='black', bg='white', image=buttonImage)
 messageLable = Label(messageFrame, text='제작 효율 계산기ver0.1', font=font.Font(size=8))
 

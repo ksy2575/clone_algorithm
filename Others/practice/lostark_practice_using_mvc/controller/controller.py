@@ -1,0 +1,11 @@
+from lostark_practice_using_mvc.view.view import *
+
+class Controller():
+    def __init__(self, view):
+        print("class Controller initialized")
+        self.view = view
+        self.view.setController(self)
+
+    # tk 메인 루프 시작(GUI출력), 크롤러 시작
+    def run(self):
+        View.startMainloop(self.view)
