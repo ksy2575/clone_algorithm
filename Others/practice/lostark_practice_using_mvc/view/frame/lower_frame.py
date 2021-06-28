@@ -1,5 +1,7 @@
 from pathlib import Path
 from lostark_practice_using_mvc.view.frame.title_frame import *
+import tkinter as tk
+from PIL import Image, ImageTk
 
 
 class LowerFrame(Frame):
@@ -27,9 +29,11 @@ class LowerFrame(Frame):
         message_frame = Frame(self, relief="solid")
         message_frame.place(x=631, y=331, height=20, anchor="se")
 
-        button_image = PhotoImage(file=r'0_source\button_refresh_16x16.png')
-        button_refresh = Button(message_frame, fg='black', bg='white', image=button_image)
+        self.image = PhotoImage(file=r'0_source\button_refresh_16x16.png')
+        button_refresh = Button(message_frame, image=self.image)
+        print(dir(self))
+
         message_label = Label(message_frame, text='메시지 출력단입니다.', font=font.Font(size=8))
 
-        button_refresh.pack(side='right', anchor="s")
+        button_refresh.pack(side='right', anchor="s", fill="both")
         message_label.pack(side='right', anchor="s")

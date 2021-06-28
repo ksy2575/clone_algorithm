@@ -11,12 +11,15 @@ class UpperFrame(Frame):
         self.grid()
         logo = Canvas(self, width=240, height=66)
 
-        base_path = Path(__file__).parent
-        file_path = (base_path / r'..\..\0_source\lostark_logo_240x66.png').resolve()
+        # base_path = Path(__file__).parent
+        # file_path = (base_path / r'..\..\0_source\lostark_logo_240x66.png').resolve()
+        # logo_image = PhotoImage(file=file_path, master=self)
 
-        logo_image = PhotoImage(file=file_path, master=self)
-        logo.create_image(5, 5, anchor=NW, image=logo_image)
-        logo.grid(row=0, column=0)
+
+        self.logo_image = PhotoImage(file='0_source\lostark_logo_240x66.png', master=self)
+
+        logo.create_image(5, 5, anchor=NW, image=self.logo_image)
+        logo.grid(row=0, column=0, sticky="ewsn")
 
         title_frame = TitleFrame(self)
         title_frame.grid(row=0, column=1)
