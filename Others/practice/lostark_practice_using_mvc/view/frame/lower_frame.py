@@ -37,4 +37,4 @@ class LowerFrame(AbstractFrame):
         # 나중에 scrollbar 연결하기 - frame으로
 
     def set_widgets(self):
-        self.listbox.grid(row=0, column=0, padx=2, pady=19, sticky="wns")
+        self.listbox.grid(row=0, column=0, padx=2, pady=(19, 0), sticky="wns")

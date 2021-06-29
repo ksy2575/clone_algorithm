@@ -31,7 +31,8 @@ class UpperFrame(AbstractFrame):
 
     def create_widgets(self):
         self.logo = Canvas(self, width=240, height=66)
-        self.logo_image = PhotoImage(file='0_source\lostark_logo_240x66.png', master=self)
+        self.logo_image = PhotoImage(file='0_source\lostark_logo_240x66.png',
+                                     master=self)
         self.logo.create_image(5, 5, anchor=NW, image=self.logo_image)
 
     def set_widgets(self):

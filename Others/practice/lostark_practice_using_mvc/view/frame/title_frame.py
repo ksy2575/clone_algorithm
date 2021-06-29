@@ -13,7 +13,6 @@ class TitleFrame(AbstractFrame):
 
         self.grid(row=0, column=1)
 
-        self.blank_space = None
         self.title_label = None
         self.version_label = None
 
@@ -22,10 +21,11 @@ class TitleFrame(AbstractFrame):
 
     def create_widgets(self):
         self.blank_space = Label(self)
-        self.title_label = Label(self, text=self.PROGRAM_TITLE, font=font.Font(size=12))
-        self.version_label = Label(self, text=self.CURRENT_VERSION, font=font.Font(size=8))
+        self.title_label = Label(self, text=self.PROGRAM_TITLE,
+                                 font=font.Font(size=12))
+        self.version_label = Label(self, text=self.CURRENT_VERSION,
+                                   font=font.Font(size=8))
 
     def set_widgets(self):
-        self.blank_space.grid(row=0, column=0, padx=3)
-        self.title_label.grid(row=1, column=0, padx=3, sticky="s")
+        self.title_label.grid(row=1, column=0, padx=3, pady=(25, 0))
         self.version_label.grid(row=2, column=0, pady=3)

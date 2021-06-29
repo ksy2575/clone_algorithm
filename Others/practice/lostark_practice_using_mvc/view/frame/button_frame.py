@@ -16,9 +16,11 @@ class ButtonFrame(AbstractFrame):
         self.set_widgets()
 
     def create_widgets(self):
-        self.button_curr_price = Button(self, text='현재가 확인', fg='black', bg='lightgray', width=15, height=3)
-        self.button_latest_price = Button(self, text='시세 그래프', fg='black', bg='lightgray', width=15, height=3)
+        self.button_curr_price = Button(self, text='현재가 확인', fg='black',
+                                        bg='lightgray', width=15, height=3)
+        self.button_latest_price = Button(self, text='시세 그래프', fg='black',
+                                          bg='lightgray', width=15, height=3)
 
     def set_widgets(self):
-        self.button_curr_price.grid(row=0, column=2, padx=10)
-        self.button_latest_price.grid(row=0, column=3)
+        self.button_curr_price.grid(row=0, column=2, padx=10, pady=(10, 0))
+        self.button_latest_price.grid(row=0, column=3, pady=(10,0))

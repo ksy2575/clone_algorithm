@@ -22,3 +22,4 @@ class View:
         # 둘 다 가능
         # tk.mainloop()
         self.root.mainloop()  # <- 컨트롤러 run에서 작동시키기
+        

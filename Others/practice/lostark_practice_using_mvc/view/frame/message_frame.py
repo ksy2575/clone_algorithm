@@ -8,7 +8,7 @@ class MessageFrame(AbstractFrame):
         print("class MessageFrame initialized")
         super().__init__(root)
 
-        self.place(x=631, y=331, height=20, anchor="se")
+        self.grid(row=1, column=1, padx=3, sticky="ewsn")
 
         self.image = PhotoImage(file=r'0_source\button_refresh_16x16.png')
         self.button_refresh = None
@@ -19,8 +19,9 @@ class MessageFrame(AbstractFrame):
 
     def create_widgets(self):
         self.button_refresh = Button(self, image=self.image)
-        self.message_label = Label(self, text='메시지 출력단입니다.', font=font.Font(size=8))
+        self.message_label = Label(self, text='메시지 출력단입니다.',
+                                   font=font.Font(size=8), width=65, anchor="e")
 
     def set_widgets(self):
-        self.button_refresh.pack(side='right', anchor="s", fill="both")
-        self.message_label.pack(side='right', anchor="s")
+        self.message_label.grid(row=0, column=0, padx=0, pady=0)
+        self.button_refresh.grid(row=0, column=1, padx=0, pady=0)
