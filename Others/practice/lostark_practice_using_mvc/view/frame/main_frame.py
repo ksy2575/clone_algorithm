@@ -13,19 +13,16 @@ class MainFrame(Frame):
         self.root.geometry("640x400+100+100")
         self.root.resizable(False, False)
 
+        self.pack(expand=True, fill="both")
+
         ############################
         #       윗부분 프레임        #
         ############################
-        self.upperFrame = UpperFrame(self)
 
+        self.upperFrame = UpperFrame(self)
 
         ############################
         #       밑부분 프레임        #
         ############################
+        
         self.lowerFrame = LowerFrame(self)
-
-
-
-
-
-        self.pack(expand=True, fill="both")

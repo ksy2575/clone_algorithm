@@ -1,31 +1,38 @@
-from pathlib import Path
 from lostark_practice_using_mvc.view.frame.title_frame import *
+from lostark_practice_using_mvc.view.frame.button_frame import *
+from lostark_practice_using_mvc.view.frame.abstract_frame import *
 
 
-class UpperFrame(Frame):
+class UpperFrame(AbstractFrame):
 
     def __init__(self, root):
         print("class UpperFrame initialized")
         super().__init__(root)
 
         self.grid()
-        logo = Canvas(self, width=240, height=66)
 
-        # base_path = Path(__file__).parent
-        # file_path = (base_path / r'..\..\0_source\lostark_logo_240x66.png').resolve()
-        # logo_image = PhotoImage(file=file_path, master=self)
+        self.logo = None
+        self.logo_image = None
 
+        ############################
+        #       타이틀 프레임        #
+        ############################
 
+        self.title_frame = TitleFrame(self)
+
+        ############################
+        #        버튼 프레임         #
+        ############################
+
+        self.button_frame = ButtonFrame(self)
+
+        self.create_widgets()
+        self.set_widgets()
+
+    def create_widgets(self):
+        self.logo = Canvas(self, width=240, height=66)
         self.logo_image = PhotoImage(file='0_source\lostark_logo_240x66.png', master=self)
+        self.logo.create_image(5, 5, anchor=NW, image=self.logo_image)
 
-        logo.create_image(5, 5, anchor=NW, image=self.logo_image)
-        logo.grid(row=0, column=0, sticky="ewsn")
-
-        title_frame = TitleFrame(self)
-        title_frame.grid(row=0, column=1)
-
-        button_curr_price = Button(self, text='현재가 확인', fg='black', bg='lightgray', width=15, height=3)
-        button_latest_price = Button(self, text='시세 그래프', fg='black', bg='lightgray', width=15, height=3)
-
-        button_curr_price.grid(row=0, column=2, padx=10)
-        button_latest_price.grid(row=0, column=3, sticky="e")
+    def set_widgets(self):
+        self.logo.grid(row=0, column=0)

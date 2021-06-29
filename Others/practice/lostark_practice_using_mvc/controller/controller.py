@@ -4,8 +4,8 @@ class Controller():
     def __init__(self, view):
         print("class Controller initialized")
         self.view = view
-        self.view.setController(self)
+        self.view.set_controller(self)
 
     # tk 메인 루프 시작(GUI출력), 크롤러 시작
     def run(self):
-        View.startMainloop(self.view)
+        View.start_mainloop(self.view)

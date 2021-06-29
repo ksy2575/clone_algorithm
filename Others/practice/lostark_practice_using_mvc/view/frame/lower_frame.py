@@ -1,10 +1,9 @@
-from pathlib import Path
-from lostark_practice_using_mvc.view.frame.title_frame import *
-import tkinter as tk
-from PIL import Image, ImageTk
+from lostark_practice_using_mvc.view.frame.abstract_frame import *
+from lostark_practice_using_mvc.view.frame.result_frame import *
+from lostark_practice_using_mvc.view.frame.message_frame import *
 
 
-class LowerFrame(Frame):
+class LowerFrame(AbstractFrame):
 
     def __init__(self, root):
         print("class LowerFrame initialized")
@@ -12,28 +11,30 @@ class LowerFrame(Frame):
 
         self.grid(row=1, column=0)
 
-        listbox = Listbox(self, selectmode='extended', width=20, height=18)
-        listbox.insert(0, "고급 회복약")
-        listbox.insert(1, "정령의 회복약")
-        listbox.insert(2, "중급 오레하 재료")
-        listbox.insert(3, "명예의 돌파석")
-        listbox.grid(row=0, column=0, padx=2, pady=19, sticky="wns")
-        # 나중에 scrollbar 연결하기 - frame으로
+        self.listbox = None
 
-        result_frame = Frame(self, relief="solid", bd=1, bg='pink', width=480)
-        result_frame.grid(row=0, column=1, padx=3, pady=19, sticky="ewsn")
+        ############################
+        #        결과 프레임         #
+        ############################
+
+        self.result_frame = ResultFrame(self, bg='pink', width=480)
 
         ############################
         #       메시지 프레임        #
         ############################
-        message_frame = Frame(self, relief="solid")
-        message_frame.place(x=631, y=331, height=20, anchor="se")
 
-        self.image = PhotoImage(file=r'0_source\button_refresh_16x16.png')
-        button_refresh = Button(message_frame, image=self.image)
-        print(dir(self))
+        self.message_frame = MessageFrame(self)
 
-        message_label = Label(message_frame, text='메시지 출력단입니다.', font=font.Font(size=8))
+        self.create_widgets()
+        self.set_widgets()
 
-        button_refresh.pack(side='right', anchor="s", fill="both")
-        message_label.pack(side='right', anchor="s")
+    def create_widgets(self):
+        self.listbox = Listbox(self, selectmode='extended', width=20, height=18)
+        self.listbox.insert(0, "고급 회복약")
+        self.listbox.insert(1, "정령의 회복약")
+        self.listbox.insert(2, "중급 오레하 재료")
+        self.listbox.insert(3, "명예의 돌파석")
+        # 나중에 scrollbar 연결하기 - frame으로
+
+    def set_widgets(self):
+        self.listbox.grid(row=0, column=0, padx=2, pady=19, sticky="wns")

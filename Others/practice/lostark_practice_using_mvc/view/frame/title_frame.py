@@ -1,18 +1,31 @@
-from tkinter import *
 from tkinter import font
+from lostark_practice_using_mvc.view.frame.abstract_frame import *
 
 
-class TitleFrame(Frame):
+class TitleFrame(AbstractFrame):
+
+    PROGRAM_TITLE = '제작 효율 계산기'
+    CURRENT_VERSION = 'ver0.1'
 
     def __init__(self, root):
         print("class TitleFrame initialized")
         super().__init__(root)
 
-        blank_space = Label(self)
-        blank_space.grid(row=0, column=0, padx=3)
+        self.grid(row=0, column=1)
 
-        title_label = Label(self, text='제작 효율 계산기', font=font.Font(size=12))
-        title_label.grid(row=1, column=0, padx=3, sticky="s")
+        self.blank_space = None
+        self.title_label = None
+        self.version_label = None
 
-        version_label = Label(self, text='ver0.1', font=font.Font(size=8))
-        version_label.grid(row=2, column=0, pady=3)
+        self.create_widgets()
+        self.set_widgets()
+
+    def create_widgets(self):
+        self.blank_space = Label(self)
+        self.title_label = Label(self, text=self.PROGRAM_TITLE, font=font.Font(size=12))
+        self.version_label = Label(self, text=self.CURRENT_VERSION, font=font.Font(size=8))
+
+    def set_widgets(self):
+        self.blank_space.grid(row=0, column=0, padx=3)
+        self.title_label.grid(row=1, column=0, padx=3, sticky="s")
+        self.version_label.grid(row=2, column=0, pady=3)

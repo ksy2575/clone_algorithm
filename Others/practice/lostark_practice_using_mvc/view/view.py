@@ -1,21 +1,24 @@
 from lostark_practice_using_mvc.view.frame.main_frame import *
 
-class View():
+
+class View:
+
     def __init__(self):
         print("class View initialized")
         self.root = Tk()
-        self.initializeForm()
+        self.initialize_form()
         self.controller = None
+        self.main_frame = None
 
-    def initializeForm(self):
-        print("initialize Form")
+    def initialize_form(self):
+        print("start initialize Form")
+        self.main_frame = MainFrame(self.root)
+        print("end initialize Form")
 
-        tk = MainFrame(self.root)
-
-    def setController(self, controller):
+    def set_controller(self, controller):
         self.controller = controller
 
-    def startMainloop(self):
+    def start_mainloop(self):
         # 둘 다 가능
         # tk.mainloop()
         self.root.mainloop()  # <- 컨트롤러 run에서 작동시키기
