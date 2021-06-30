@@ -22,3 +22,7 @@ class ResultFrame(AbstractFrame):
 
     def set_widgets(self):
         self.result_label.grid(row=0, column=0)
+
+    def clear_board(self):
+        print("clear_board")
+        # self.result_label.
