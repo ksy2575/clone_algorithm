@@ -1,50 +1,53 @@
 import csv
+import pandas
 
-from lostark_practice_using_mvc.view.view import *
+import lostark_practice_using_mvc.view.view as view
+import lostark_practice_using_mvc.model.product as model
 
-class Controller():
-    def __init__(self, view):
+
+class Controller:
+
+    def __init__(self, my_view):
         print("class Controller initialized")
         
         # 유저의 선호 품목을 csv로 저장 및 불러오기,
         # 로스트아크의 전체 제작식을 DB로 사전에 저장 및 불러오기 <-무슨 DB?
-        self.user_products = self.get_user_product_from_csv('./user_products.csv')
-        self.view = view
+        self.product_dict = {}
+        self.product_list = []
+        self.get_user_product_from_csv('./user_products.csv')
+        self.view = my_view
         self.view.set_controller(self)
 
     # tk 메인 루프 시작(GUI출력), 크롤러 시작
     def run(self):
-        View.start_mainloop(self.view)
+        view.View.start_mainloop(self.view)
 
     def get_user_product_from_csv(self, directory):
-        print("get_product_list_from_csv")
-        file_reader = open(directory, 'r')
+        print("get_user_product_from_csv")
+        try:
+            file_reader = open(directory, 'r', encoding='UTF8')
+        except FileNotFoundError:
+            # 파일이 없다면 새로 생성
+            temp_product_list = ['고급 회복약', '각성 각인서', '역천지체 각인서']
+            self.save_user_product_to_csv(temp_product_list)
+            file_reader = open(directory, 'r', encoding='UTF8')
+
         csv_reader = csv.reader(file_reader)
         for line in csv_reader:
-            # print(line)
-            self.create_product_dict(line)
+            print(line)
+            self.create_product_list(line[0])
         file_reader.close()
-        return []
+        print(self.product_list)
+        print(self.product_dict)
 
-    def create_product_dict(self, line):
-        # for index in range(len(line)):
-        #     curr = line[index]
-        #     if index == 0:
-        #         if curr not in self.product_dict:
-        #             self.product_dict[curr] = Product(curr)
-        #         self.Recipe_dict[curr]
-        #     elif not curr.isdigit():
-        #         curr_name = curr
-        #         if curr not in self.product_dict:
-        #             self.product_dict[curr] = Product(curr)
-        #     elif curr_name != '' and curr.isdigit():
-        #         curr_quantity = curr
-        #         # print(curr_name, curr_quantity) # 득실 계산시 필요
-        #         self.Recipe_dict[line[0]].append((curr_name, curr_quantity))
-        #
-        #         curr_name = ''
-        #     else:
-        #         self.Recipe_dict[line[0]].append(curr)
-        # print('Recipe_dict :', self.Recipe_dict)
-        # print('')
-        pass
+    def create_product_list(self, name):
+        print("create_product_dict")
+        if name.isdigit():
+            pass
+        else:
+            self.product_list.append(name)
+            self.product_dict[name] = model.Product(name)
+
+    def save_user_product_to_csv(self, product_list):
+        data_frame = pandas.DataFrame(product_list)
+        data_frame.to_csv('./user_products.csv', index=False)
