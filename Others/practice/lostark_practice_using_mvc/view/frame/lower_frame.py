@@ -5,9 +5,11 @@ from lostark_practice_using_mvc.view.frame.message_frame import *
 
 class LowerFrame(AbstractFrame):
 
-    def __init__(self, root):
+    def __init__(self, root, view):
         print("class LowerFrame initialized")
         super().__init__(root)
+        self.view = view
+        self.view.set_widgets("LowerFrame", self)
 
         self.grid(row=1, column=0)
 

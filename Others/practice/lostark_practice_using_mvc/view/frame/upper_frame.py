@@ -5,7 +5,7 @@ from lostark_practice_using_mvc.view.frame.abstract_frame import *
 
 class UpperFrame(AbstractFrame):
 
-    def __init__(self, root):
+    def __init__(self, root, view):
         print("class UpperFrame initialized")
         super().__init__(root)
 

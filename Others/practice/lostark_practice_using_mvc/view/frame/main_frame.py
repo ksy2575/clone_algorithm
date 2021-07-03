@@ -5,9 +5,10 @@ from lostark_practice_using_mvc.view.frame.upper_frame import UpperFrame
 
 class MainFrame(Frame):
 
-    def __init__(self, root):
+    def __init__(self, view, root):
         print("class MainFrame initialized")
         super().__init__(root)
+        self.view = view
         self.root = root
         self.root.title("로스트아크 제작 효율 계산기")
         self.root.geometry("640x400+100+100")
@@ -19,10 +20,10 @@ class MainFrame(Frame):
         #       윗부분 프레임        #
         ############################
 
-        self.upperFrame = UpperFrame(self)
+        self.upperFrame = UpperFrame(self, self.view)
 
         ############################
         #       밑부분 프레임        #
         ############################
         
-        self.lowerFrame = LowerFrame(self)
+        self.lowerFrame = LowerFrame(self, self.view)
