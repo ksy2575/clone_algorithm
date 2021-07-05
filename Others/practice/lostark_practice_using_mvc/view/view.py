@@ -22,14 +22,13 @@ class View:
         print("start initialize Form")
         MainFrame(self.root, self)
         print("end initialize Form")
+        print("in frame_dict :", list(self.frame_dict.keys()))
 
     def set_controller(self, controller):
         self.controller = controller
 
     def set_frames(self, frame_name, instance):
-        print(frame_name, instance, type(instance))
         self.frame_dict[frame_name] = instance
-        print(self.frame_dict)
 
 
     def start_mainloop(self):
