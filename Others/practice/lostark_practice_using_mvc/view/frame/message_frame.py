@@ -8,9 +8,11 @@ STATE_COMPLETE = 2
 
 class MessageFrame(AbstractFrame):
 
-    def __init__(self, root):
+    def __init__(self, root, view):
         print("class MessageFrame initialized")
         super().__init__(root)
+        self.view = view
+        self.view.set_frames("message_frame", self)
 
         self.grid(row=1, column=1, padx=3, sticky="ewsn")
 

@@ -1,40 +1,38 @@
 from lostark_practice_using_mvc.view.frame.main_frame import *
 from lostark_practice_using_mvc.view.frame.lower_frame import *
 
+
 class View:
 
     def __init__(self):
         print("class View initialized")
         self.root = Tk()
-        self.initialize_form()
         self.controller = None
-        self.main_frame = None
-        self.lower_frame = None
+        
+        # 많은 프레임들을 dict로 추적 및 관리
+        self.frame_dict = {}
+        # self.main_frame = None
+        # self.upper_frame = None
+        # self.lower_frame = None
+        # self.button_frame = None
+        # self.message_frame = None
+        self.initialize_form()
 
     def initialize_form(self):
         print("start initialize Form")
-        self.main_frame = MainFrame(self, self.root)
+        MainFrame(self.root, self)
         print("end initialize Form")
 
     def set_controller(self, controller):
         self.controller = controller
 
-    def set_widgets(self, widget_name, instance):
-        print(widget_name, instance, type(instance))
-        self.lower_frame = instance
-        print(self.lower_frame)
+    def set_frames(self, frame_name, instance):
+        print(frame_name, instance, type(instance))
+        self.frame_dict[frame_name] = instance
+        print(self.frame_dict)
 
 
     def start_mainloop(self):
         # 둘 다 가능
         # tk.mainloop()
         self.root.mainloop()  # <- 컨트롤러 run에서 작동시키기
-
-    def set_list_box(self, product_list):
-        # 컨트롤러가 뷰를 통해 뷰의 각 위젯을 동작시키도록 설계
-        # 그러기 위해서는 컨트롤러 - 뷰 : 양방향 연관 관계
-        # 뷰 - 위젯들간의 인스턴스 : 양방향 연관 관계
-        print("set_list_box")
-        print(self.lower_frame)
-        print(product_list)
-        pass

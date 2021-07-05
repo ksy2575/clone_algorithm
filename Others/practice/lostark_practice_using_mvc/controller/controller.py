@@ -17,8 +17,8 @@ class Controller:
         self.get_user_product_from_csv('./user_products.csv')
         self.view = my_view
         self.view.set_controller(self)
-        # print(self.view.lower_frame)
-        self.view.set_list_box(self.product_list)
+        self.set_list_box()
+        self.bind_commands()
 
     # tk 메인 루프 시작(GUI 출력), 크롤러 시작
     def run(self):
@@ -39,8 +39,6 @@ class Controller:
             print(line)
             self.create_product_list(line[0])
         file_reader.close()
-        # print(self.product_list)
-        # print(self.product_dict)
 
     def create_product_list(self, name):
         print("create_product_dict")
@@ -53,3 +51,23 @@ class Controller:
     def save_user_product_to_csv(self, product_list):
         data_frame = pandas.DataFrame(product_list)
         data_frame.to_csv('./user_products.csv', index=False)
+
+    def btn_curr_price_clicked(self):
+        print("btn_curr_price_clicked")
+
+    def btn_latest_price_clicked(self):
+        print("btn_latest_price_clicked")
+
+    def btn_refresh_clicked(self):
+        print("btn_refresh_clicked")
+
+    def set_list_box(self):
+        # 컨트롤러가 뷰의 각 위젯을 동작시키도록 설계
+        # 그러기 위해서는 컨트롤러 - 뷰 : 단방향 연관 관계
+        print("set_list_box")
+        for i in range(len(self.product_list)):
+            self.view.frame_dict["lower_frame"].listbox.insert(i, self.product_list[i])
+
+    def bind_commands(self):
+        print("bind_commands")
+        pass

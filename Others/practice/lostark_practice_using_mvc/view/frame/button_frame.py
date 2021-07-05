@@ -3,9 +3,11 @@ from lostark_practice_using_mvc.view.frame.abstract_frame import *
 
 class ButtonFrame(AbstractFrame):
 
-    def __init__(self, root):
+    def __init__(self, root, view):
         print("class ButtonFrame initialized")
         super().__init__(root)
+        self.view = view
+        self.view.set_frames("button_frame", self)
 
         self.grid(row=0, column=2)
 

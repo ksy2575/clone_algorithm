@@ -4,9 +4,11 @@ from tkinter import font
 
 class ResultFrame(AbstractFrame):
 
-    def __init__(self, root, bg, width):
+    def __init__(self, root, view,  bg, width):
         print("class ResultFrame initialized")
         super().__init__(root, bg=bg, width=width)
+        self.view = view
+        self.view.set_frames("result_frame", self)
 
         self.grid(row=0, column=1, padx=3, pady=(19, 0), sticky="ewsn")
 

@@ -9,7 +9,7 @@ class LowerFrame(AbstractFrame):
         print("class LowerFrame initialized")
         super().__init__(root)
         self.view = view
-        self.view.set_widgets("LowerFrame", self)
+        self.view.set_frames("lower_frame", self)
 
         self.grid(row=1, column=0)
 
@@ -19,13 +19,13 @@ class LowerFrame(AbstractFrame):
         #        결과 프레임         #
         ############################
 
-        self.result_frame = ResultFrame(self, bg='pink', width=480)
+        self.result_frame = ResultFrame(self, self.view, bg='pink', width=480)
 
         ############################
         #       메시지 프레임        #
         ############################
 
-        self.message_frame = MessageFrame(self)
+        self.message_frame = MessageFrame(self, self.view)
 
         self.create_widgets()
         self.set_widgets()

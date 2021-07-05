@@ -8,6 +8,8 @@ class UpperFrame(AbstractFrame):
     def __init__(self, root, view):
         print("class UpperFrame initialized")
         super().__init__(root)
+        self.view = view
+        self.view.set_frames("upper_frame", self)
 
         self.grid()
 
@@ -24,7 +26,7 @@ class UpperFrame(AbstractFrame):
         #        버튼 프레임         #
         ############################
 
-        self.button_frame = ButtonFrame(self)
+        self.button_frame = ButtonFrame(self, self.view)
 
         self.create_widgets()
         self.set_widgets()
