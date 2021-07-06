@@ -27,9 +27,17 @@ class Controller:
         self.get_user_product_from_csv('./user_products.csv')
         self.view = my_view
         self.view.set_controller(self)
-        self.set_list_box()
         self.mode_state = self.STATE_DEFAULT
-        self.image_btn_refresh = None
+
+        # 현재 품목, None이면 도움말을 출력하도록 설계하기(default=None)
+        self.curr_product = None
+
+        # 이미지 할당 <- 많아지면 팩토리
+        self.image_btn_refresh = PhotoImage(file=r'0_source\button_refresh_16x16.png')
+        self.image_logo = PhotoImage(file='0_source\lostark_logo_240x66.png')
+        self.set_image()
+
+        self.set_list_box()
         
         # 초기 시작 시 크롤러를 돌리며 STATE_REFRESHABLE -> STATE_FINISHED로 변경하기
         self.crawler_state = self.STATE_REFRESHABLE
@@ -133,3 +141,10 @@ class Controller:
         btn_refresh.configure(command=self.btn_refresh_clicked)
 
         print("bind_commands finished")
+
+    def set_image(self):
+        btn_refresh = self.view.frame_dict["message_frame"].btn_refresh
+        canvas_logo = self.view.frame_dict["upper_frame"].logo
+
+        btn_refresh.configure(image=self.image_btn_refresh)
+        canvas_logo.configure(image=self.image_logo)

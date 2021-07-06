@@ -16,7 +16,6 @@ class MessageFrame(AbstractFrame):
 
         self.grid(row=1, column=1, padx=3, sticky="ewsn")
 
-        self.image = PhotoImage(file=r'0_source\button_refresh_16x16.png')
         self.btn_refresh = None
         self.message_label = None
 
@@ -24,7 +23,7 @@ class MessageFrame(AbstractFrame):
         self.set_widgets()
 
     def create_widgets(self):
-        self.btn_refresh = Button(self, image=self.image)
+        self.btn_refresh = Button(self)
         self.message_label = Label(self, text='메시지 출력단입니다.',
                                    font=font.Font(size=8), width=65, anchor="e")
 

@@ -31,7 +31,8 @@ class LowerFrame(AbstractFrame):
         self.set_widgets()
 
     def create_widgets(self):
-        self.listbox = Listbox(self, selectmode='extended', width=20, height=18)
+        self.listbox = Listbox(self, selectmode='browse', width=20, height=18,
+                               activestyle="none")
         # self.listbox.insert(0, "고급 회복약")
         # self.listbox.insert(1, "정령의 회복약")
         # self.listbox.insert(2, "중급 오레하 재료")
@@ -39,4 +40,4 @@ class LowerFrame(AbstractFrame):
         # 나중에 scrollbar 연결하기 - frame으로
 
     def set_widgets(self):
-        self.listbox.grid(row=0, column=0, padx=2, pady=(19, 0), sticky="wns")
+        self.listbox.grid(row=0, column=0, padx=2, pady=(5, 0), sticky="wns")

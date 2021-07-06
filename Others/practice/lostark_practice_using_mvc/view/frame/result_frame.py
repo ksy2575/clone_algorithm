@@ -10,7 +10,7 @@ class ResultFrame(AbstractFrame):
         self.view = view
         self.view.set_frames("result_frame", self)
 
-        self.grid(row=0, column=1, padx=3, pady=(19, 0), sticky="ewsn")
+        self.grid(row=0, column=1, padx=3, pady=(5, 0), sticky="ewsn")
 
         self.image = None
         self.result_label = None
