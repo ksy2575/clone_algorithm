@@ -5,12 +5,26 @@ from tkinter import font
 from tkinter import ttk
 # from tkinter.ttk import *
 from PIL import Image, ImageTk
-
+button_list = []
+button_pos_list = [(305, 27), (355, 40), (345, 100), (290, 80),
+                   (250, 110), (210, 115), (210, 160), (260, 165),
+                   (237, 178), (160, 145), (130, 185), (170, 210),
+                   (125, 245), (55, 248), (90, 300), (80, 350),
+                   (90, 380), (135, 344), (140, 375), (200, 380),
+                   (165, 427), (160, 452), (275, 448), (240, 475),
+                   (268, 498), (314, 458), (330, 490),
+                   (314, 540), (320, 575),
+                   (547, 43), (600, 41), (530, 85), (565, 92),
+                   (590, 100), (620, 80), (665, 100), (700, 120),
+                   (565, 160), (680, 160), (640, 190)
+                   ]
 
 class MapButton(Button):
-    def __init__(self, root, x, y):
+    def __init__(self, root, x, y, number):
         print("class ResultFrame initialized")
-        super().__init__(root, bg="white", command=self.switch, relief="flat", overrelief="raised")
+        super().__init__(root, bg="white", command=self.switch,
+                         text=number,
+                         relief="flat", overrelief="raised")
 
         self.place(x=x, y=y, width=20, height=20)
 
@@ -22,10 +36,15 @@ class MapButton(Button):
             self.configure(background="lightgreen")
         elif self.configure("background")[-1] == "lightgreen":
             print("purple")
-            self.configure(background="purple")
+            self.configure(background="purple", foreground="white")
         elif self.configure("background")[-1] == "purple":
             print("white")
-            self.configure(background="white")
+            self.configure(background="white", foreground="black")
+
+def reset():
+    print("reset")
+    for curr_btn in button_list:
+        curr_btn.configure(background="white", foreground="black")
 
 
 try:
@@ -72,7 +91,7 @@ title2.grid(row=2, column=0, pady=3)
 
 
 buttonLoad = Button(upperFrame, text='불러오기', fg='black', bg='lightgray', width=15, height=3)
-buttonReset = Button(upperFrame, text='전체 초기화', fg='black', bg='lightgray', width=15, height=3)
+buttonReset = Button(upperFrame, text='전체 초기화', fg='black', bg='lightgray', width=15, height=3, command=reset)
 
 
 buttonLoad.grid(row=0, column=2, padx=10)
@@ -93,22 +112,10 @@ map_bg.grid(row=0, column=0)
 ################################
 #         버튼 노가다            #
 ################################
-button_pos_list = [(305, 27), (355, 40), (345, 100), (290, 80),
-                   (250, 110), (210, 115), (210, 160), (260, 165),
-                   (237, 178), (160, 145), (130, 185), (170, 210),
-                   (125, 245), (55, 248), (90, 300), (80, 350),
-                   (90, 380), (135, 344), (140, 375), (200, 380),
-                   (165, 427), (160, 452), (275, 448), (240, 475),
-                   (268, 498), (160, 452), (314, 458), (330, 490),
-                   (314, 540), (320, 575),
-                   (547, 43), (600, 41), (530, 85), (565, 92),
-                   (590, 100), (620, 80), (665, 100), (700, 120),
-                   (565, 160), (680, 160), (640, 190)
 
-
-                   ]
-for x, y in button_pos_list:
-    MapButton(lowerFrame, x, y)
+for i in range(len(button_pos_list)):
+    x, y = button_pos_list[i]
+    button_list.append(MapButton(lowerFrame, x, y, i+1))
 
 
 resultFrame = Frame(lowerFrame, relief="solid", bd=1, bg='pink', width=480)

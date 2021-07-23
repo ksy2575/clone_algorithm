@@ -2,9 +2,11 @@ from tkinter import *
 
 
 class MapButton(Button):
-    def __init__(self, root, x, y):
+    def __init__(self, root, x, y, number):
         print("class ResultFrame initialized")
-        super().__init__(root, bg="white", command=self.switch, relief="flat", overrelief="raised")
+        super().__init__(root, bg="white", command=self.switch,
+                         text=number,
+                         relief="flat", overrelief="raised")
 
         self.place(x=x, y=y, width=20, height=20)
 
