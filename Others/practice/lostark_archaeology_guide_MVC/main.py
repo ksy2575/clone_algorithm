@@ -127,7 +127,7 @@ messageFrame = Frame(resultFrame, relief="solid")
 messageFrame.grid()
 buttonImage = PhotoImage(file=r'0_source\button_refresh_16x16.png')
 buttonRefresh = Button(messageFrame, fg='black', bg='white', image=buttonImage)
-messageLable = Label(messageFrame, text='무쇠망치 고고학 가이드ver0.2', font=font.Font(size=8))
+messageLable = Label(messageFrame, text='무쇠망치 고고학 가이드ver0.1', font=font.Font(size=8))
 
 buttonRefresh.pack(side='right', anchor="s")
 messageLable.pack(side='right', anchor="s")
