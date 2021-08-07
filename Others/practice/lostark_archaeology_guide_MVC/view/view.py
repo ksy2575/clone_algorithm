@@ -28,6 +28,8 @@ class View:
         self.root.geometry("770x710+100+100")
         self.root.resizable(False, False)
 
+        # upperFrame
+        self.upperFrame = UpperFrame(self.root, self)
         self.upperFrame = None
         self.logo = None
         self.logoImage = None
@@ -42,7 +44,7 @@ class View:
         self.lowerFrame = None
         self.map_bg = None
         self.map_image = None
-        
+
         self.set_frame()
         self.set_buttons()
 
@@ -80,6 +82,18 @@ class View:
         self.map_bg.create_image(5, 5, anchor=NW, image=self.map_image)
         self.map_bg.grid(row=0, column=0)
 
+        self.resultFrame = Frame(self.lowerFrame, relief="solid", bd=1, bg='pink', width=480)
+        self.resultFrame.grid(row=1, column=0, padx=3, pady=3, sticky="ewsn")
+
+        self.messageFrame = Frame(self.resultFrame, relief="solid")
+        self.messageFrame.grid()
+        self.buttonImage = PhotoImage(file=r'0_source\button_refresh_16x16.png')
+        self.buttonRefresh = Button(self.messageFrame, fg='black', bg='white', image=self.buttonImage)
+        self.messageLable = Label(self.messageFrame, text='무쇠망치 고고학 가이드ver0.2', font=font.Font(size=8))
+
+        self.buttonRefresh.pack(side='right', anchor="s")
+        self.messageLable.pack(side='right', anchor="s")
+
     def start_mainloop(self):
         self.root.mainloop()
 
@@ -92,5 +106,3 @@ class View:
         for i in range(len(self.button_pos_list)):
             x, y = self.button_pos_list[i]
             self.button_list.append(MapButton(self.lowerFrame, x, y, i + 1))
-
-

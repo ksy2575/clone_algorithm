@@ -4,8 +4,8 @@ from lostark_archaeology_guide_MVC.view.frame.abstract_frame import *
 
 class TitleFrame(AbstractFrame):
 
-    PROGRAM_TITLE = '제작 효율 계산기'
-    CURRENT_VERSION = 'ver0.1'
+    PROGRAM_TITLE = '무쇠망치 고고학 가이드'
+    CURRENT_VERSION = 'ver0.2'
 
     def __init__(self, root):
         print("class TitleFrame initialized")
