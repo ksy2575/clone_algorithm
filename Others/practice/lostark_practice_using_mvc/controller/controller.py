@@ -24,7 +24,7 @@ class Controller:
         # 로스트아크의 전체 제작식을 DB로 사전에 저장 및 불러오기 <-무슨 DB?
         self.product_list = []
         self.product_dict = {}
-        self.get_user_product_from_csv('./user_products.csv')
+        self.get_user_product_from_csv('./1_datas/user_products.csv')
         self.view = my_view
         self.view.set_controller(self)
         self.mode_state = self.STATE_DEFAULT
