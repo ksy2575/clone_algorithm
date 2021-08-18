@@ -124,6 +124,10 @@ class Controller:
 
         btn_refresh.configure(image=self.image_btn_refresh)
 
+    def listbox_item_select(self, event):
+        w = event.widget
+        print("listbox item :", w.curselection()[0], "selected")
+
     def set_list_box(self):
         # 컨트롤러가 뷰의 각 위젯을 동작시키도록 설계
         # 그러기 위해서는 컨트롤러 - 뷰 : 단방향 연관 관계
@@ -132,6 +136,7 @@ class Controller:
         print("set_list_box finished")
 
     def bind_commands(self):
+        # buttons
         btn_curr_price = self.view.frame_dict["button_frame"].btn_curr_price
         btn_latest_price = self.view.frame_dict["button_frame"].btn_latest_price
         btn_refresh = self.view.frame_dict["message_frame"].btn_refresh
@@ -139,6 +144,10 @@ class Controller:
         btn_curr_price.configure(command=self.btn_curr_price_clicked)
         btn_latest_price.configure(command=self.btn_latest_price_clicked)
         btn_refresh.configure(command=self.btn_refresh_clicked)
+
+        # listbox
+        listbox = self.view.frame_dict["lower_frame"].listbox
+        listbox.bind("<<ListboxSelect>>", self.listbox_item_select)
 
         print("bind_commands finished")
 
