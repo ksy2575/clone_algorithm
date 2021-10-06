@@ -1,4 +1,4 @@
-package baekjoon;
+package baekjoon.Queue;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -34,6 +34,6 @@ public class Q_2477 {
 		q.poll();
 		ans -= q.poll()*q.poll();
 		System.out.println(ans*n);
-	}
+	}//  30 60 20 100 50 160
 
 }
