@@ -1,8 +1,8 @@
-package lv2;
+package brute_force;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 
+// Brute Force
 public class Solution_수식_최대화 {
 	
 	public long solution(String expression) {
@@ -11,7 +11,6 @@ public class Solution_수식_최대화 {
     	int[][] orders = new int[][] {{0, 1, 2}, {0, 2, 1}, {1, 0, 2}, {1, 2, 0}, {2, 0, 1}, {2, 1, 0}};
         for(int[] order : orders) {
         	char[] curr = getCurrEx(ex, order);
-        	System.out.println(Arrays.toString(curr));
         	LinkedList<Long> nums = getNumList(expression);
         	LinkedList<Character> exs = getExList(expression);
         	answer = Math.max(answer, getMaxAbs(nums, exs, curr));
@@ -30,17 +29,17 @@ public class Solution_수식_최대화 {
 					nums.remove(i);
 					nums.add(i, temp);
 					exs.remove(i);
+					i--;
 				}
 			}
 		}
-		return 0;
+		return Math.abs(nums.get(0));
 	}
 	private LinkedList<Long> getNumList(String expression) {
 		LinkedList<Long> retList = new LinkedList<Long>();
 		for(String s: expression.split("[*|+|-]")) {
 			retList.add(Long.parseLong(s));
 		}
-		System.out.println(retList);
 		return retList;
 	}
 	private LinkedList<Character> getExList(String expression) {
@@ -48,7 +47,6 @@ public class Solution_수식_최대화 {
 		for(char c: expression.toCharArray()) {
 			if(!Character.isDigit(c)) retList.add(c);
 		}
-		System.out.println(retList);
 		return retList;
 	}
 	private char[] getCurrEx(char[] ex, int[] order) {
